@@ -1,2 +1,0 @@
-# F-APP
-Fitness-App
