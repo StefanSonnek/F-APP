@@ -18,9 +18,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-/**
- * A login screen that offers login via username/password.
- */
 public class LoginActivity extends AppCompatActivity {
 
 
@@ -37,21 +34,20 @@ public class LoginActivity extends AppCompatActivity {
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView mUsernameView;
-    private EditText mPasswordView;
+    private AutoCompleteTextView username_input;
+    private EditText password_input;
     private View mProgressView;
     private View mLoginFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        // Set up the login form.
-        mUsernameView = findViewById(R.id.username);
-        //populateAutoComplete();
+        setContentView(R.layout.login_activity);
 
-        mPasswordView = findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        username_input = findViewById(R.id.username);
+
+        password_input = findViewById(R.id.password);
+        password_input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
@@ -62,11 +58,35 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button mUsernameSignInButton = findViewById(R.id.username_sign_in_button);
-        mUsernameSignInButton.setOnClickListener(new OnClickListener() {
+        Button signInButton = findViewById(R.id.username_sign_in_button);
+        signInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 attemptLogin();
+            }
+        });
+
+        Button registerButton = findViewById(R.id.register_button);
+        registerButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: openRegisterView();
+            }
+        });
+
+        Button facebookButton = findViewById(R.id.facebook_login);
+        facebookButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: set up facebook login;
+            }
+        });
+
+        Button googlePlusButton = findViewById(R.id.google_plus_login);
+        googlePlusButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: set up google plus login;
             }
         });
 
@@ -74,52 +94,43 @@ public class LoginActivity extends AppCompatActivity {
         mProgressView = findViewById(R.id.login_progress);
     }
 
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid username, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
     private void attemptLogin() {
         if (mAuthTask != null) {
             return;
         }
 
         // Reset errors.
-        mUsernameView.setError(null);
-        mPasswordView.setError(null);
+        username_input.setError(null);
+        password_input.setError(null);
 
         // Store values at the time of the login attempt.
-        String username = mUsernameView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        String username = username_input.getText().toString();
+        String password = password_input.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
+            password_input.setError(getString(R.string.error_invalid_password));
+            focusView = password_input;
             cancel = true;
         }
 
         // Check for a valid username address.
         if (TextUtils.isEmpty(username)) {
-            mUsernameView.setError(getString(R.string.error_field_required));
-            focusView = mUsernameView;
+            username_input.setError(getString(R.string.error_field_required));
+            focusView = username_input;
             cancel = true;
         } else if (!isUsernameValid(username)) {
-            mUsernameView.setError(getString(R.string.error_invalid_username));
-            focusView = mUsernameView;
+            username_input.setError(getString(R.string.error_invalid_username));
+            focusView = username_input;
             cancel = true;
         }
 
         if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
             showProgress(true);
             mAuthTask = new UserLoginTask(username, password);
             mAuthTask.execute((Void) null);
@@ -127,12 +138,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean isUsernameValid(String username) {
-        //TODO: Replace this with your own logic
+        //TODO: Connect with Database
         return username.length() >= 4;
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
+        //TODO: Connect with Database
         return password.length() > 4;
     }
 
@@ -141,9 +152,6 @@ public class LoginActivity extends AppCompatActivity {
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
@@ -165,14 +173,10 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
             mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
     }
-
-
 
     /**
      * Represents an asynchronous login/registration task used to authenticate
@@ -217,11 +221,11 @@ public class LoginActivity extends AppCompatActivity {
             showProgress(false);
 
             if (success) {
-                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                 Intent intent = new Intent(LoginActivity.this, WorkoutActivity.class);
                  startActivity(intent);
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                password_input.setError(getString(R.string.error_incorrect_password));
+                password_input.requestFocus();
             }
         }
 

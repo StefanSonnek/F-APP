@@ -13,11 +13,6 @@
     tools:context=".LoginActivity">
 
     <!-- Login progress -->
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="96dp"
-        app:srcCompat="@mipmap/fapp_launch_icon_round" />
 
     <ProgressBar
         android:id="@+id/login_progress"
@@ -30,13 +25,19 @@
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/username_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/Fapp_Icon"
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                app:srcCompat="@mipmap/fapp_launch_icon_round" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -80,6 +81,53 @@
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
 
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="200dp">
+
+                <Button
+                    android:id="@+id/facebook_login"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="125dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="@drawable/facebook_button"
+                    app:layout_constraintEnd_toStartOf="@+id/google_plus_login"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/google_plus_login"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="125dp"
+                    android:background="@drawable/google_plus_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/facebook_login"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/register_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/register_link"
+                    app:layout_constraintBottom_toTopOf="@+id/register_button"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <Button
+                    android:id="@+id/register_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register_button"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>
