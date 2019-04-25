@@ -180,7 +180,7 @@ public class LoginActivity extends AppCompatActivity {
 
     /**
      * Represents an asynchronous login/registration task used to authenticate
-     * the user.asdf
+     * the user.
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
