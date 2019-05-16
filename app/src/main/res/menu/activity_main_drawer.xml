@@ -7,19 +7,32 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
-            android:title="Home" />
+            android:title="@string/nav_home" />
         <item
             android:id="@+id/nav_workout"
             android:icon="@drawable/ic_baseline_fitness_center_24px"
-            android:title="Workout" />
+            android:title="@string/nav_workout" />
         <item
             android:id="@+id/nav_food"
             android:icon="@drawable/ic_baseline_local_dining_24px"
-            android:title="Food" />
+            android:title="@string/nav_food" />
         <item
             android:id="@+id/nav_social"
             android:icon="@drawable/ic_baseline_people_24px"
-            android:title="Social" />
+            android:title="@string/nav_social" />
     </group>
+    <item android:title="@string/nav_other">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/nav_settings" />
+            <item
+                android:id="@+id/nav_account"
+                android:icon="@drawable/ic_user_account"
+                android:title="@string/nav_account" />
+        </menu>
+    </item>
+
 
 </menu>
