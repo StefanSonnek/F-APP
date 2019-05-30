@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView username_input;
+    private EditText username_input;
     private EditText password_input;
     private View mProgressView;
     private View mLoginFormView;
@@ -66,29 +66,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button registerButton = findViewById(R.id.register_button);
-        registerButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: openRegisterView();
-            }
-        });
-
-        Button facebookButton = findViewById(R.id.facebook_login);
-        facebookButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: set up facebook login;
-            }
-        });
-
-        Button googlePlusButton = findViewById(R.id.google_plus_login);
-        googlePlusButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: set up google plus login;
-            }
-        });
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
@@ -178,6 +155,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public void openRegisterActivity(View view) {
+        startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+    }
+
+
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
@@ -234,6 +216,7 @@ public class LoginActivity extends AppCompatActivity {
             mAuthTask = null;
             showProgress(false);
         }
+
     }
 }
 

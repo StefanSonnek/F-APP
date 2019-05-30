@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:background="@drawable/login_background"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -36,98 +37,77 @@
             <ImageView
                 android:id="@+id/Fapp_Icon"
                 android:layout_width="match_parent"
-                android:layout_height="96dp"
-                app:srcCompat="@mipmap/fapp_launch_icon_round" />
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/launch_icon_squat" />
 
-            <android.support.design.widget.TextInputLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="60dp"
+                android:alpha="0.7"
+                android:background="@drawable/textview_background">
 
-                <AutoCompleteTextView
+                <EditText
                     android:id="@+id/username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_username"
+                    android:layout_centerInParent="true"
+                    android:drawableLeft="@drawable/ic_action_username"
+                    android:drawableRight="@drawable/ic_action_placeholder"
+                    android:hint="username"
                     android:inputType="text"
-                    android:maxLines="1"
-                    android:singleLine="true" />
+                    android:gravity="center"
+                    android:background="@null"
+                    android:textColor="#ffff"
+                    android:typeface="monospace" />
 
-            </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:alpha="0.7"
+                android:background="@drawable/textview_background">
 
                 <EditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_password"
-                    android:imeActionId="6"
-                    android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
+                    android:layout_centerInParent="true"
+                    android:drawableLeft="@drawable/ic_action_lock"
+                    android:drawableRight="@drawable/ic_action_placeholder"
                     android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:singleLine="true" />
+                    android:gravity="center"
+                    android:hint="password"
+                    android:background="@null"
+                    android:textColor="#ffff"
+                    android:typeface="monospace" />
 
-            </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
+
 
             <Button
                 android:id="@+id/username_sign_in_button"
-                style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:background="@drawable/rounded_button"
+                android:elevation="20dp"
+                />
 
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minHeight="200dp">
-
-                <Button
-                    android:id="@+id/facebook_login"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="125dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="25dp"
-                    android:background="@drawable/facebook_button"
-                    app:layout_constraintEnd_toStartOf="@+id/google_plus_login"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/google_plus_login"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="125dp"
-                    android:background="@drawable/google_plus_button"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/facebook_login"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/register_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/register_link"
-                    app:layout_constraintBottom_toTopOf="@+id/register_button"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <Button
-                    android:id="@+id/register_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/register_button"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-            </android.support.constraint.ConstraintLayout>
+            <TextView
+                android:id="@+id/register_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_link"
+                android:textSize="13dp"
+                android:onClick="openRegisterActivity"
+                android:textColor="#ffffff" />
 
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>
