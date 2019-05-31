@@ -1,109 +1,121 @@
 package com.example.fapp_navi_drawer.Fragments;
 
-import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
+import android.widget.ScrollView;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 
+import com.example.fapp_navi_drawer.AccountActivity;
+import com.example.fapp_navi_drawer.MainActivity;
 import com.example.fapp_navi_drawer.R;
+import com.example.fapp_navi_drawer.SettingsActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link HomeFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class HomeFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
+public class HomeFragment extends Fragment implements Animation.AnimationListener{
+    Button btnWorkout;
+    Button btnMeal;
+    Button btnFriends;
+    Button btnAccount;
+    Button btnSettings;
+    NavigationView navigationView;
+    FragmentManager fragmentManager;
+    ViewGroup transitionsContainer;
 
     public HomeFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        ScrollView view = (ScrollView) inflater.inflate(R.layout.fragment_home, container, false);
+
+        Animation animZoom = AnimationUtils.loadAnimation(getContext(),
+                R.anim.fade_in);
+        navigationView = getActivity().findViewById(R.id.nav_view);
+
+        btnWorkout = view.findViewById(R.id.workout_button);
+        btnMeal = view.findViewById(R.id.food_button);
+        btnFriends = view.findViewById(R.id.social_button);
+        btnAccount = view.findViewById(R.id.account_button);
+        btnSettings = view.findViewById(R.id.settings_button);
+
+        btnWorkout.startAnimation(animZoom);
+        btnMeal.startAnimation(animZoom);
+        btnFriends.startAnimation(animZoom);
+        btnAccount.startAnimation(animZoom);
+        btnSettings.startAnimation(animZoom);
+        fragmentManager = getFragmentManager();
+
+        btnWorkout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                fragmentManager.beginTransaction().replace(R.id.frame, new WorkoutFragment()).commit();
+                navigationView.getMenu().getItem(1).setChecked(true);
+            }
+        });
+
+        btnMeal.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                fragmentManager.beginTransaction().replace(R.id.frame, new FoodFragment()).commit();
+                navigationView.getMenu().getItem(2).setChecked(true);
+            }
+        });
+
+        btnFriends.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                fragmentManager.beginTransaction().replace(R.id.frame, new SocialFragment()).commit();
+                navigationView.getMenu().getItem(3).setChecked(true);
+            }
+        });
+
+        btnAccount.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), AccountActivity.class));
+            }
+        });
+
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
+            }
+        });
+
+
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+
+    @Override
+    public void onAnimationStart(Animation animation) {
+
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+    public void onAnimationEnd(Animation animation) {
+
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+    public void onAnimationRepeat(Animation animation) {
+
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }

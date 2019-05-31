@@ -1,5 +1,6 @@
 package com.example.fapp_navi_drawer;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -13,26 +14,29 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.fapp_navi_drawer.Fragments.FoodFragment;
 import com.example.fapp_navi_drawer.Fragments.HomeFragment;
 import com.example.fapp_navi_drawer.Fragments.SocialFragment;
 import com.example.fapp_navi_drawer.Fragments.WorkoutFragment;
 
-public class MainActivity extends AppCompatActivity
-        implements FoodFragment.OnFragmentInteractionListener, HomeFragment.OnFragmentInteractionListener, SocialFragment.OnFragmentInteractionListener, WorkoutFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity{
 
     private DrawerLayout drawer;
     private NavigationView navigationView;
     private Toolbar toolbar;
 
-    private boolean shouldLoadHomeFragOnBackPress = true;
-    public static int navItemIndex = 0;
+    public static int navItemIndex;
 
     private static final String TAG_HOME = "home";
     private static final String TAG_WORKOUT = "workout";
     private static final String TAG_SOCIAL = "social";
     private static final String TAG_FOOD = "food";
+    private static final String TAG_SETTINGS = "settings";
+    private static final String TAG_ACCOUNT = "account";
+    private static final String TAG_LOGOUT = "log out";
+
     public static String CURRENT_TAG = TAG_HOME;
 
     private String[] activityTitles;
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        navItemIndex = 0;
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -103,17 +108,30 @@ public class MainActivity extends AppCompatActivity
             case 3:
                 SocialFragment socialFragment = new SocialFragment();
                 return socialFragment;
+            case 4:
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                return new HomeFragment();
+            case 5:
+                startActivity(new Intent(MainActivity.this, AccountActivity.class));
+                return new HomeFragment();
+            case 6:
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                finish();
             default:
                 return new HomeFragment();
         }
     }
 
-    private void setToolbarTitle() {
-        getSupportActionBar().setTitle(activityTitles[navItemIndex]);
+    public void setToolbarTitle() {
+        this.getSupportActionBar().setTitle(activityTitles[navItemIndex]);
     }
 
     private void selectNavMenu() {
-        navigationView.getMenu().getItem(navItemIndex).setChecked(true);
+        if(navItemIndex > 3){
+            }
+        else {
+            navigationView.getMenu().getItem(navItemIndex).setChecked(true);
+        }
     }
 
     private void setUpNavigationView() {
@@ -143,6 +161,18 @@ public class MainActivity extends AppCompatActivity
                         navItemIndex = 3;
                         CURRENT_TAG = TAG_SOCIAL;
                         break;
+                    case R.id.nav_settings:
+                        navItemIndex = 4;
+                        CURRENT_TAG = TAG_SETTINGS;
+                        break;
+                    case R.id.nav_account:
+                        navItemIndex = 5;
+                        CURRENT_TAG = TAG_ACCOUNT;
+                        break;
+                    case R.id.nav_logout:
+                        navItemIndex = 6;
+                        CURRENT_TAG = TAG_LOGOUT;
+                        break;
                     default:
                         navItemIndex = 0;
                 }
@@ -153,7 +183,6 @@ public class MainActivity extends AppCompatActivity
                 } else {
                     menuItem.setChecked(true);
                 }
-                menuItem.setChecked(true);
 
                 loadHomeFragment();
 
@@ -188,6 +217,7 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
+        boolean shouldLoadHomeFragOnBackPress = true;
         if (shouldLoadHomeFragOnBackPress) {
             if (navItemIndex != 0) {
                 navItemIndex = 0;
@@ -207,8 +237,5 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
 
-    }
 }

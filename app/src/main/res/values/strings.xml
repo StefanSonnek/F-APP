@@ -1,23 +1,31 @@
 <resources>
     <string name="app_name">FAPP</string>
 
-    <string name="action_settings">Settings</string>
-    <string name="prompt_username">Username</string>
-    <string name="prompt_password">Password </string>
+    <!--region a-->
+    <!--endregion-->
+
+    <!--region Sign in-->
     <string name="action_sign_in">Sign in</string>
-    <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_username">This username is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="register_link">Don\'t have an account? Register here</string>
+    <!--endregion-->
 
+    <!--region Sign up-->
+    <string name="register_to_login">Already Registered? Login here</string>
+    <!--endregion-->
+
+    <!--region Navigation Drawer-->
     <string name="openDrawer">Open navigation drawer</string>
     <string name="closeDrawer">Close navigation drawer</string>
     <string name="nav_header_title">F-APP</string>
-    <string name="nav_header_subtitle">Fitness-App.com</string>
+    <string name="nav_header_username">Username</string>
     <string name="nav_header_desc">The best fitness app there is</string>
+    <!--endregion-->
 
+    <!--region Fragment Titles-->
     <string name="nav_home">Home</string>
     <string name="nav_workout">Workout</string>
     <string name="nav_food">Food</string>
@@ -26,8 +34,9 @@
     <string name="nav_settings">Settings</string>
     <string name="nav_account">Account</string>
     <string name="nav_log_out">Log out</string>
-    <string name="workout_image">Click to get to Workouts</string>
+    <!--endregion-->
 
+    <!--region Fragment Names-->
     <string-array name="nav_item_activity_titles">
         <item>Home</item>
         <item>Workout</item>
@@ -37,8 +46,13 @@
         <item>Account</item>
         <item>Log out</item>
     </string-array>
+    <!--endregion-->
 
+    <!--region Welcoming messages-->
     <string name="home_welcome_message">Welcome to THE Fitness-APP. Happy F-APPing ;)</string>
     <string name="social_welcome_message">F-APP together with your friends</string>
+    <!--endregion-->
+
+    <string name="content_description">image</string>
 
 </resources>

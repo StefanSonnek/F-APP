@@ -38,6 +38,7 @@
                 android:id="@+id/Fapp_Icon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/content_description"
                 app:srcCompat="@drawable/launch_icon_squat" />
 
             <RelativeLayout
@@ -51,8 +52,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:drawableLeft="@drawable/ic_action_username"
-                    android:drawableRight="@drawable/ic_action_placeholder"
+                    android:drawableStart="@drawable/ic_action_username"
+                    android:drawableEnd="@drawable/ic_action_placeholder"
                     android:hint="username"
                     android:inputType="text"
                     android:gravity="center"
@@ -74,8 +75,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:drawableLeft="@drawable/ic_action_lock"
-                    android:drawableRight="@drawable/ic_action_placeholder"
+                    android:drawableStart="@drawable/ic_action_lock"
+                    android:drawableEnd="@drawable/ic_action_placeholder"
                     android:inputType="textPassword"
                     android:gravity="center"
                     android:hint="password"
