@@ -53,6 +53,26 @@
     <string name="social_welcome_message">F-APP together with your friends</string>
     <!--endregion-->
 
+    <!--region AddUebung-->
+
+    <string name="empty_list_text">No Uebungen available!</string>
+    <string name="add_record">Add Record!</string>
+    <string name="Bezeichnung">Bezeichnung</string>
+    <string name="Beschreibung">Beschreibung</string>
+
+    <string name="todo">Uebungen</string>
+    <string name="Saetze">Sätze</string>
+    <string name="Wdh">Wiederholunge</string>
+    <string name="Gwt">Gewicht</string>
+    <string name="Gruppe">Musklegruppe</string>
+    <string name="btn_update">Update</string>
+    <string name="btn_delete">Delete</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--endregion-->
+
     <string name="content_description">image</string>
 
 </resources>
