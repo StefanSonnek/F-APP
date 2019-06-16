@@ -1,37 +1,21 @@
-package com.example.fapp_navi_drawer.Fragments;
+package com.example.fapp_navi_drawer;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fapp_navi_drawer.CaloriesAndFood;
-import com.example.fapp_navi_drawer.DAL.DatabaseManagerFood;
-import com.example.fapp_navi_drawer.FoodAddActivity;
-import com.example.fapp_navi_drawer.MainActivity;
-import com.example.fapp_navi_drawer.MainFoodActivity;
-import com.example.fapp_navi_drawer.NewFood_Activity;
-import com.example.fapp_navi_drawer.R;
 import com.example.fapp_navi_drawer.bll.Food;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FoodFragment extends Fragment {
-    public FoodFragment() {
-        // Required empty public constructor
-    }
+public class CaloriesAndFood extends AppCompatActivity {
     private ListView lv_Furehstueck;
     private List<Food> ArrayList_Fruehstueck = new ArrayList<Food>();
     private ListView lv_Mittagessen;
@@ -45,39 +29,34 @@ public class FoodFragment extends Fragment {
     private TextView TVEaten;
     private TextView TVLeft;
     private TextView TVGoal;
-    private FragmentActivity activity;
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        ConstraintLayout view = (ConstraintLayout) inflater.inflate(R.layout.calories_and_food, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activity = getActivity();
-        lv_Furehstueck = view.findViewById(R.id.ListFruehstueck);
-        Button btnaddFruehstueck = view.findViewById(R.id.AddBreakfast);
-        lv_Mittagessen = view.findViewById(R.id.ListMittag);
-        Button btnaddMittag = view.findViewById(R.id.addmittagessen);
-        lv_Abendessen = view.findViewById(R.id.ListAbend);
-        Button btnaddAbend = view.findViewById(R.id.AddAbendessen);
-        TVEaten = view.findViewById(R.id.CaloriesEaten);
-        TVLeft = view.findViewById(R.id.CalorisLeft);
-        TVGoal = view.findViewById(R.id.CaloriesZiel);
+        setContentView(R.layout.calories_and_food);
+        lv_Furehstueck = this.findViewById(R.id.ListFruehstueck);
+        Button btnaddFruehstueck = this.findViewById(R.id.AddBreakfast);
+        lv_Mittagessen = this.findViewById(R.id.ListMittag);
+        Button btnaddMittag = this.findViewById(R.id.addmittagessen);
+        lv_Abendessen = this.findViewById(R.id.ListAbend);
+        Button btnaddAbend = this.findViewById(R.id.AddAbendessen);
+         TVEaten = this.findViewById(R.id.CaloriesEaten);
+         TVLeft = this.findViewById(R.id.CalorisLeft);
+         TVGoal = this.findViewById(R.id.CaloriesZiel);
 
         ArrayAdapter_Frueh = new ArrayAdapter<Food>(
-                activity,
+                this,
                 android.R.layout.simple_list_item_1,
                 ArrayList_Fruehstueck );
         lv_Furehstueck.setAdapter((ArrayAdapter_Frueh));
 
         ArrayAdapter_Mittag = new ArrayAdapter<Food>(
-                activity,
+                this,
                 android.R.layout.simple_list_item_1,
                 ArrayList_Mittagessen );
         lv_Mittagessen.setAdapter((ArrayAdapter_Mittag));
 
         ArrayAdapter_Abend = new ArrayAdapter<Food>(
-                activity,
+                this,
                 android.R.layout.simple_list_item_1,
                 ArrayList_Abendessen );
         lv_Abendessen.setAdapter((ArrayAdapter_Abend));
@@ -85,7 +64,7 @@ public class FoodFragment extends Fragment {
         btnaddFruehstueck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent( activity, MainFoodActivity.class);
+                Intent intent = new Intent( CaloriesAndFood.this, MainActivity.class);
                 intent.putExtra("Value","Frueh");
                 startActivityForResult(intent,REQUEST_CODE);
             }
@@ -94,7 +73,7 @@ public class FoodFragment extends Fragment {
         btnaddMittag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent( activity, MainFoodActivity.class);
+                Intent intent = new Intent( CaloriesAndFood.this, MainActivity.class);
                 intent.putExtra("Value","Mittag");
                 startActivityForResult(intent,REQUEST_CODE);
             }
@@ -103,16 +82,15 @@ public class FoodFragment extends Fragment {
         btnaddAbend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent( activity, MainFoodActivity.class);
+                Intent intent = new Intent( CaloriesAndFood.this, MainActivity.class);
                 intent.putExtra("Value","Abend");
                 startActivityForResult(intent,REQUEST_CODE);
             }
         });
-        return view;
     }
 
     @Override
-    public void onActivityResult( int requestCode, int resultCode, Intent dataIntent){
+    protected void onActivityResult( int requestCode, int resultCode, Intent dataIntent){
         super.onActivityResult( requestCode, resultCode, dataIntent);
         switch (requestCode) {
             case REQUEST_CODE:
@@ -139,8 +117,8 @@ public class FoodFragment extends Fragment {
                         ArrayAdapter_Abend.notifyDataSetChanged();
                     }
 
-                    Eaten = Eaten + food.getCalories();
-                    LEFT = Goal - Eaten;
+                     Eaten = Eaten + food.getCalories();
+                     LEFT = Goal - Eaten;
 
                     TVEaten.setText(String.valueOf(Eaten));
 
@@ -149,7 +127,7 @@ public class FoodFragment extends Fragment {
                 }
                 break;
             default:
-                Toast.makeText(activity, "Not food added!", Toast.LENGTH_LONG).show();
+                Toast.makeText(CaloriesAndFood.this, "Not food added!", Toast.LENGTH_LONG).show();
                 break;
 
         }

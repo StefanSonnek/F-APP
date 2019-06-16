@@ -10,7 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class SignUpActivity extends AppCompatActivity {
-
+    String username;
+    String pswd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +38,9 @@ public class SignUpActivity extends AppCompatActivity {
 
                 if(validate()) {
                     Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                    startActivity(intent);
+                    intent.putExtra("username",username );
+                    intent.putExtra("password",pswd );
+                    startActivityForResult(intent, 1);
                 }
 
 
@@ -49,9 +52,9 @@ public class SignUpActivity extends AppCompatActivity {
     private boolean validate(){
         boolean result=true;
         EditText uname=findViewById(R.id.txtName);
-        String username=uname.getText().toString();
+        username=uname.getText().toString();
         EditText pwd=findViewById(R.id.txtPwd);
-        String password=pwd.getText().toString();
+        pswd=pwd.getText().toString();
         EditText age=findViewById(R.id.txtAlter);
         String alter=age.getText().toString();
         EditText height=findViewById(R.id.txtGroesse);
@@ -62,7 +65,7 @@ public class SignUpActivity extends AppCompatActivity {
             uname.setError("Username not empty");
             result=false;
         }
-        if(password.isEmpty()){
+        if(pswd.isEmpty()){
             pwd.setError("Password not empty");
         }
         if(alter.isEmpty()){

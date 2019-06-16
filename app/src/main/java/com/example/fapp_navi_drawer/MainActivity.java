@@ -15,7 +15,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
+import com.example.fapp_navi_drawer.DAL.DatabaseHelperFood;
 import com.example.fapp_navi_drawer.Fragments.FoodFragment;
 import com.example.fapp_navi_drawer.Fragments.HomeFragment;
 import com.example.fapp_navi_drawer.Fragments.SocialFragment;
@@ -46,7 +48,14 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        String username = getIntent().getStringExtra("username");
+        if(username != null) {
+            NavigationView navigationView = (NavigationView)this.findViewById(R.id.nav_view);
+            TextView user = navigationView.getHeaderView(0).findViewById(R.id.nav_header_username);
+            user.setText(username);
+        }
         navItemIndex = 0;
+        new DatabaseHelperFood(this);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

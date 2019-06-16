@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class LoginActivity extends AppCompatActivity {
 
 
@@ -25,9 +27,8 @@ public class LoginActivity extends AppCompatActivity {
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
      */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "test:hello", "sebastian:asdfg"
-    };
+    private static ArrayList<String> DUMMY_CREDENTIALS = new ArrayList<String>();
+
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -36,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     // UI references.
     private EditText username_input;
     private EditText password_input;
+    private boolean userOrPwd = false;
     private View mProgressView;
     private View mLoginFormView;
 
@@ -43,6 +45,13 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
+        if(DUMMY_CREDENTIALS.size() < 1)
+            DUMMY_CREDENTIALS.add("sebastian:asdfg");
+        String newUsername = getIntent().getStringExtra("username");
+        String newPassword = getIntent().getStringExtra("password");
+        if(newUsername != null && !newUsername.isEmpty() && !newPassword.isEmpty()){
+            DUMMY_CREDENTIALS.add(newUsername + ":" + newPassword);
+        }
 
         username_input = findViewById(R.id.username);
 
@@ -177,7 +186,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-
+            boolean succcess = false;
             try {
                 // Simulate network access.
                 Thread.sleep(2000);
@@ -189,12 +198,15 @@ public class LoginActivity extends AppCompatActivity {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mUsername)) {
                     // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+                    userOrPwd = false;
+                    succcess = pieces[1].equals(mPassword);
+                }else{
+                    userOrPwd = true;
                 }
             }
 
             // TODO: register the new account here.
-            return true;
+            return succcess;
         }
 
         @Override
@@ -204,11 +216,17 @@ public class LoginActivity extends AppCompatActivity {
 
             if (success) {
                  Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                 intent.putExtra("username",mUsername );
                  startActivity(intent);
                  finish();
             } else {
-                password_input.setError(getString(R.string.error_incorrect_password));
-                password_input.requestFocus();
+                if(userOrPwd){
+                    username_input.setError(getString(R.string.error_invalid_username));
+                    username_input.requestFocus();
+                }else {
+                    password_input.setError(getString(R.string.error_incorrect_password));
+                    password_input.requestFocus();
+                }
             }
         }
 
