@@ -77,7 +77,7 @@ public class UpdateUebung extends AppCompatActivity {
     }
 
     private void returnToActivity() {
-        Intent home_intent = new Intent(getApplicationContext(), MainActivity.class)
+        Intent home_intent = new Intent(getApplicationContext(), MainActivityUebung.class)
                 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(home_intent);
     }

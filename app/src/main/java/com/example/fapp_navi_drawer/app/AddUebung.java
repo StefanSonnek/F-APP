@@ -11,7 +11,6 @@ import android.widget.Spinner;
 
 import com.example.fapp_navi_drawer.R;
 import com.example.fapp_navi_drawer.MUSKELGRUPPE;
-import com.example.fapp_navi_drawer.Uebung;
 
 
 public class AddUebung extends AppCompatActivity {
@@ -57,7 +56,7 @@ public class AddUebung extends AppCompatActivity {
 
 
 
-                Intent main = new Intent(AddUebung.this, MainActivity.class)
+                Intent main = new Intent(AddUebung.this, MainActivityUebung.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 startActivity(main);

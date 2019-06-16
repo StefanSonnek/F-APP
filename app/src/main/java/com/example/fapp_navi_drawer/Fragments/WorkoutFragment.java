@@ -18,7 +18,7 @@ public class WorkoutFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.activity_startWorkout, container, false);
+        return inflater.inflate(R.layout.activity_startworkout, container, false);
     }
 
 }

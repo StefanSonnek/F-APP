@@ -13,7 +13,7 @@ import android.view.View;
 import com.example.fapp_navi_drawer.R;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivityUebung extends AppCompatActivity {
 
     public static final String mypreference = "preferences";
     public static final String keySelectedTabIndex = "selectedTabIndex";
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_startWorkout);
+        setContentView(R.layout.activity_startworkout);
 
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Alle"));
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         btnAddToDo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent newUebung = new Intent(MainActivity.this, AddUebung.class);
+                Intent newUebung = new Intent(MainActivityUebung.this, AddUebung.class);
                 startActivity(newUebung);
             }
         });
