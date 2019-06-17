@@ -1,4 +1,4 @@
-package com.example.fapp_navi_drawer;
+package com.example.fapp_navi_drawer.Activities.Food;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fapp_navi_drawer.Activities.MainActivity;
+import com.example.fapp_navi_drawer.R;
 import com.example.fapp_navi_drawer.bll.Food;
 
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ public class CaloriesAndFood extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.calories_and_food);
+        setContentView(R.layout.food_main_activity);
         lv_Furehstueck = this.findViewById(R.id.ListFruehstueck);
         Button btnaddFruehstueck = this.findViewById(R.id.AddBreakfast);
         lv_Mittagessen = this.findViewById(R.id.ListMittag);

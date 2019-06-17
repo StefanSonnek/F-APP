@@ -1,4 +1,4 @@
-package com.example.fapp_navi_drawer;
+package com.example.fapp_navi_drawer.Activities.Food;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,14 +7,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.fapp_navi_drawer.Activities.MainActivity;
 import com.example.fapp_navi_drawer.DAL.DatabaseManagerFood;
+import com.example.fapp_navi_drawer.R;
 import com.example.fapp_navi_drawer.bll.Food;
 
 public class NewFood_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_food_layout);
+        setContentView(R.layout.food_new_food);
         Button btnaddFood = this.findViewById(R.id.btnaddFood);
 
         final EditText foodName = this.findViewById(R.id.food_Name);
@@ -34,7 +36,7 @@ public class NewFood_Activity extends AppCompatActivity {
                     dbM.open();
                     dbM.insert(foodtoadd);
                     dbM.close();
-                    Intent intent = new Intent(NewFood_Activity.this,MainActivity.class);
+                    Intent intent = new Intent(NewFood_Activity.this, MainActivity.class);
                     intent.putExtra("foodtoAdd",foodtoadd);
                     setResult(2, intent);
                     finish();

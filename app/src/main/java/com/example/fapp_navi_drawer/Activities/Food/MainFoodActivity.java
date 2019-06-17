@@ -1,4 +1,4 @@
-package com.example.fapp_navi_drawer;
+package com.example.fapp_navi_drawer.Activities.Food;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fapp_navi_drawer.DAL.DatabaseManagerFood;
+import com.example.fapp_navi_drawer.R;
 import com.example.fapp_navi_drawer.bll.Food;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class MainFoodActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.choose_food);
+        setContentView(R.layout.food_choose);
         lv = this.findViewById(R.id.idListView);
         Button btnaddFood = this.findViewById(R.id.btnaddFood);
         fillList(lv);

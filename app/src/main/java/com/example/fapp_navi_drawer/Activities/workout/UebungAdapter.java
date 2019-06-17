@@ -1,4 +1,4 @@
-package com.example.fapp_navi_drawer.app;
+package com.example.fapp_navi_drawer.Activities.workout;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.fapp_navi_drawer.R;
-import com.example.fapp_navi_drawer.Uebung;
+import com.example.fapp_navi_drawer.bll.Uebung;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class UebungAdapter extends ArrayAdapter<Uebung> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         if(convertView == null){
-            convertView =  ((Activity)getContext()).getLayoutInflater().inflate(R.layout.activity_view_todorecord,parent,false);
+            convertView =  ((Activity)getContext()).getLayoutInflater().inflate(R.layout.workout_adapter,parent,false);
         }
 
         TextView tvBezeichnung =  convertView.findViewById(R.id.tvBezeichnung);

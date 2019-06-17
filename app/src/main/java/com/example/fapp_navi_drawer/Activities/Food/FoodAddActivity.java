@@ -1,4 +1,4 @@
-package com.example.fapp_navi_drawer;
+package com.example.fapp_navi_drawer.Activities.Food;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.fapp_navi_drawer.Activities.MainActivity;
+import com.example.fapp_navi_drawer.R;
 import com.example.fapp_navi_drawer.bll.Food;
 
 public class FoodAddActivity extends AppCompatActivity {
@@ -17,7 +19,7 @@ public class FoodAddActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_add);
+        setContentView(R.layout.food_add_to_meal);
 
         final TextView IdFatAmount = this.findViewById(R.id.IdFatAmount);
         final TextView IdCarbsAmount = this.findViewById(R.id.IdCarbsAmount);

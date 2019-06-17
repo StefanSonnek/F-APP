@@ -1,4 +1,4 @@
-package com.example.fapp_navi_drawer;
+package com.example.fapp_navi_drawer.Activities.authorization;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,13 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.fapp_navi_drawer.R;
+
 public class SignUpActivity extends AppCompatActivity {
     String username;
     String pswd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register_actitvity);
+        setContentView(R.layout.activity_register);
         TextView login = (TextView) findViewById(R.id.lnkLogin);
         login.setMovementMethod(LinkMovementMethod.getInstance());
         login.setOnClickListener(new View.OnClickListener() {

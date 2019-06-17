@@ -1,7 +1,9 @@
-package com.example.fapp_navi_drawer.app;
+package com.example.fapp_navi_drawer.Activities.workout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -9,13 +11,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.fapp_navi_drawer.Activities.MainActivity;
+import com.example.fapp_navi_drawer.Fragments.WorkoutFragment;
 import com.example.fapp_navi_drawer.R;
-import com.example.fapp_navi_drawer.MUSKELGRUPPE;
+import com.example.fapp_navi_drawer.bll.MUSKELGRUPPE;
+import com.example.fapp_navi_drawer.bll.Uebung;
 
 
 public class AddUebung extends AppCompatActivity {
 
     private Button btnAddRecord;
+    private Button btnCancel;
     private EditText etBezeichnung;
     private EditText etBeschreibung;
     private Spinner spinnerGruppe;
@@ -29,7 +35,7 @@ public class AddUebung extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_todo);
+        setContentView(R.layout.workout_add);
         setTitle("Add Record");
 
         etBezeichnung = (EditText) findViewById(R.id.etBezeichnung);
@@ -54,15 +60,24 @@ public class AddUebung extends AppCompatActivity {
                 final MUSKELGRUPPE muskelgruppe = (MUSKELGRUPPE) spinnerGruppe.getSelectedItem();
 
 
+                Intent intent = new Intent();
+                intent.putExtra("fragment", "Workout");
+                intent.putExtra("uebung", new Uebung(1, bezeichnung, beschreibung, sets, wdh, gwt, muskelgruppe));
+                setResult(RESULT_OK, intent);
+                finish();
 
-
-                Intent main = new Intent(AddUebung.this, MainActivityUebung.class)
-                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                startActivity(main);
             }
         });
 
-
+        btnCancel = (Button) findViewById(R.id.btn_cancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("fragment", "Workout");
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
     }
 }

@@ -13,10 +13,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
-import com.example.fapp_navi_drawer.AccountActivity;
-import com.example.fapp_navi_drawer.MainActivity;
+import com.example.fapp_navi_drawer.Activities.AccountActivity;
 import com.example.fapp_navi_drawer.R;
-import com.example.fapp_navi_drawer.SettingsActivity;
+import com.example.fapp_navi_drawer.Activities.SettingsActivity;
 
 public class HomeFragment extends Fragment implements Animation.AnimationListener{
     Button btnWorkout;

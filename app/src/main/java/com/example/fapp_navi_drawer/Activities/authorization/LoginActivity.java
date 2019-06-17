@@ -1,4 +1,4 @@
-package com.example.fapp_navi_drawer;
+package com.example.fapp_navi_drawer.Activities.authorization;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -13,10 +13,12 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.fapp_navi_drawer.Activities.MainActivity;
+import com.example.fapp_navi_drawer.R;
 
 import java.util.ArrayList;
 
@@ -44,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_activity);
+        setContentView(R.layout.activity_login);
         if(DUMMY_CREDENTIALS.size() < 1)
             DUMMY_CREDENTIALS.add("sebastian:asdfg");
         String newUsername = getIntent().getStringExtra("username");

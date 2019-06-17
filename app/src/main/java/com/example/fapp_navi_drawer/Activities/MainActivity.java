@@ -1,7 +1,6 @@
-package com.example.fapp_navi_drawer;
+package com.example.fapp_navi_drawer.Activities;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -14,16 +13,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.fapp_navi_drawer.Activities.authorization.LoginActivity;
 import com.example.fapp_navi_drawer.DAL.DatabaseHelperFood;
 import com.example.fapp_navi_drawer.Fragments.FoodFragment;
 import com.example.fapp_navi_drawer.Fragments.HomeFragment;
 import com.example.fapp_navi_drawer.Fragments.SocialFragment;
 import com.example.fapp_navi_drawer.Fragments.WorkoutFragment;
+import com.example.fapp_navi_drawer.R;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawer;
     private NavigationView navigationView;
@@ -47,10 +47,10 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+        setContentView(R.layout.activity_main);
         String username = getIntent().getStringExtra("username");
-        if(username != null) {
-            NavigationView navigationView = (NavigationView)this.findViewById(R.id.nav_view);
+        if (username != null) {
+            NavigationView navigationView = (NavigationView) this.findViewById(R.id.nav_view);
             TextView user = navigationView.getHeaderView(0).findViewById(R.id.nav_header_username);
             user.setText(username);
         }
@@ -136,9 +136,8 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void selectNavMenu() {
-        if(navItemIndex > 3){
-            }
-        else {
+        if (navItemIndex > 3) {
+        } else {
             navigationView.getMenu().getItem(navItemIndex).setChecked(true);
         }
     }
@@ -239,12 +238,23 @@ public class MainActivity extends AppCompatActivity{
         super.onBackPressed();
     }
 
-        @Override
-        public boolean onCreateOptionsMenu (Menu menu){
-            // Inflate the menu; this adds items to the action bar if it is present.
-            getMenuInflater().inflate(R.menu.main, menu);
-            return true;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent dataIntent) {
+        super.onActivityResult(requestCode, resultCode, dataIntent);
+        switch (dataIntent.getStringExtra("fragment")) {
+            case "workout":
+                navItemIndex = 1;
+                loadHomeFragment();
+                break;
         }
+    }
 
 
 }
