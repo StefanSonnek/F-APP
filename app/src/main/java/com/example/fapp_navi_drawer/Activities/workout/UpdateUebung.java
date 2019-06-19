@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.fapp_navi_drawer.DAL.DatabaseManagerUebung;
 import com.example.fapp_navi_drawer.Fragments.WorkoutFragment;
 import com.example.fapp_navi_drawer.R;
 import com.example.fapp_navi_drawer.bll.MUSKELGRUPPE;
@@ -23,6 +24,7 @@ public class UpdateUebung extends AppCompatActivity {
     private Spinner spinnerMuskel;
 
     private ArrayAdapter<MUSKELGRUPPE> adapter;
+    private DatabaseManagerUebung dbManager;
 
 
 
@@ -34,7 +36,8 @@ public class UpdateUebung extends AppCompatActivity {
 
         adapter = new ArrayAdapter<MUSKELGRUPPE>(this, android.R.layout.simple_spinner_dropdown_item, MUSKELGRUPPE.values());
 
-
+        dbManager = new DatabaseManagerUebung(this);
+        dbManager.open();
         etBezeichnung = (EditText) findViewById(R.id.etBezeichnung);
         etBeschreibung = (EditText) findViewById(R.id.etBeschreibung);
         spinnerMuskel = (Spinner) findViewById(R.id.spinnerGruppe);
@@ -57,14 +60,15 @@ public class UpdateUebung extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*u.setBeschreibung(etBeschreibung.getText().toString());
+                u.setBeschreibung(etBeschreibung.getText().toString());
                 u.setBezeichnung(etBezeichnung.getText().toString());
                 u.setSets(Integer.parseInt(etSets.getText().toString()));
                 u.setWdh(Integer.parseInt(etWdh.getText().toString()));
                 u.setGwt(Integer.parseInt(etGwt.getText().toString()));
-                u.setMuseklgruppe((MUSKELGRUPPE) spinnerMuskel.getSelectedItem());*/
+                u.setMuseklgruppe((MUSKELGRUPPE) spinnerMuskel.getSelectedItem());
 
-               //abspeichern mittels webservice
+                dbManager.update(u);
+
                 returnToActivity();
 
             }

@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.fapp_navi_drawer.Activities.MainActivity;
+import com.example.fapp_navi_drawer.DAL.DatabaseManagerUebung;
 import com.example.fapp_navi_drawer.Fragments.WorkoutFragment;
 import com.example.fapp_navi_drawer.R;
 import com.example.fapp_navi_drawer.bll.MUSKELGRUPPE;
@@ -28,6 +29,8 @@ public class AddUebung extends AppCompatActivity {
     private EditText etSaetze;
     private EditText etWdh;
     private EditText etGwt;
+
+    private DatabaseManagerUebung dbManager;
 
 
 
@@ -59,6 +62,8 @@ public class AddUebung extends AppCompatActivity {
                 final int gwt= Integer.parseInt(etGwt.getText().toString());
                 final MUSKELGRUPPE muskelgruppe = (MUSKELGRUPPE) spinnerGruppe.getSelectedItem();
 
+                dbManager.insert(new Uebung(0, bezeichnung, beschreibung,sets,wdh,gwt, muskelgruppe));
+
 
                 Intent intent = new Intent();
                 intent.putExtra("fragment", "Workout");
@@ -79,5 +84,7 @@ public class AddUebung extends AppCompatActivity {
                 finish();
             }
         });
+        dbManager = new DatabaseManagerUebung(this);
+        dbManager.open();
     }
 }
