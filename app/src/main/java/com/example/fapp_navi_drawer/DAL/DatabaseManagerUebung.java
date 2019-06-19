@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class DatabaseManagerUebung {
     private DatabaseHelperUebung dbHelper;
     private Context context;
+
     private SQLiteDatabase database;
 
     public DatabaseManagerUebung(Context context ) {
@@ -66,7 +67,7 @@ public class DatabaseManagerUebung {
         contentValues.put(DatabaseHelperUebung.WIEDERHOLUNGEN, u.getWdh());
         contentValues.put(DatabaseHelperUebung.GEWICHT, u.getGwt());
         contentValues.put(DatabaseHelperUebung.MUSKELGRUPPE, u.getMuseklgruppe().toString());
-        int i = database.update( DatabaseHelperUebung.TABLE_NAME, contentValues, DatabaseHelperUebung.ID + " = " + t.getId(), null );
+        int i = database.update( DatabaseHelperUebung.TABLE_NAME, contentValues, DatabaseHelperUebung.ID + " = " + u.getId(), null );
         return i;
     }
 
